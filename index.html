@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Contagem Regressiva</title>
+<style>
+    
+  body {
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    background-color: #0b0b0b;
+  }
+
+  .countdown-box {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    text-align: center;
+  }
+
+  .countdown {
+    font-size: 24px;
+    font-weight: bold;
+    margin: 10px 0;
+  }
+</style>
+</head>
+<body>
+<div class="countdown-box">
+  <h1>AMOR</h1>
+  <h2>Esse é o tempo que falta</h2>
+  <div class="countdown" id="days">00</div>
+  <div class="countdown">dias</div>
+  <div class="countdown" id="hours">00</div>
+  <div class="countdown">horas</div>
+  <div class="countdown" id="minutes">00</div>
+  <div class="countdown">minutos</div>
+  <div class="countdown" id="seconds">00</div>
+  <div class="countdown">segundos</div>
+</div>
+
+<script>
+function updateCountdown() {
+  const targetDate = new Date("2023-08-16T14:00:00").getTime();
+  const currentDate = new Date().getTime();
+  const timeRemaining = targetDate - currentDate;
+
+  const days = Math.floor(timeRemaining / (1000 * 60 * 60 * 24));
+  const hours = Math.floor((timeRemaining % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+  const minutes = Math.floor((timeRemaining % (1000 * 60 * 60)) / (1000 * 60));
+  const seconds = Math.floor((timeRemaining % (1000 * 60)) / 1000);
+
+  document.getElementById("days").textContent = days < 10 ? `0${days}` : days;
+  document.getElementById("hours").textContent = hours < 10 ? `0${hours}` : hours;
+  document.getElementById("minutes").textContent = minutes < 10 ? `0${minutes}` : minutes;
+  document.getElementById("seconds").textContent = seconds < 10 ? `0${seconds}` : seconds;
+}
+
+// Atualizar a contagem a cada segundo
+setInterval(updateCountdown, 1000);
+
+// Iniciar a contagem ao carregar a página
+updateCountdown();
+</script>
+</body>
+</html>
